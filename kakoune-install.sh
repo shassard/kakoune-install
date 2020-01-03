@@ -12,15 +12,18 @@ curl -L https://github.com/ul/kak-lsp/releases/download/v7.0.0/kak-lsp-v7.0.0-x8
 mkdir -p $HOME/.local/bin
 mv kak-lsp $HOME/.local/bin/
 mkdir -p $HOME/.config/kak-lsp
-sed "s/rls/ra_lsp_server/g" kak-lsp.toml > kak-lsp-new.toml
-mv kak-lsp-new.toml $HOME/.config/kak-lsp/
+#sed "s/rls/ra_lsp_server/g" kak-lsp.toml > kak-lsp-new.toml
+mv kak-lsp.toml $HOME/.config/kak-lsp/
+
+# rls
+rustup component add rls rust-analysis rust-src
 
 # rust-analyzer
-git clone https://github.com/rust-analyzer/rust-analyzer
-pushd .
-cd rust-analyzer
-cargo xtask install --server
-popd
+#git clone https://github.com/rust-analyzer/rust-analyzer
+#pushd .
+#cd rust-analyzer
+#cargo xtask install --server
+#popd
 
 # kakrc
 mkdir -p $HOME/.config/kak
