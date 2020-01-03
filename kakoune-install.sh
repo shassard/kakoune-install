@@ -3,9 +3,9 @@
 set -ex
 
 # kakoune
-#sudo apt install libncursesw5-dev pkg-config
-#git clone https://github.com/mawww/kakoune.git
-#PREFIX=$HOME/.local make -C kakoune/src install
+sudo apt install libncursesw5-dev pkg-config
+git clone https://github.com/mawww/kakoune.git
+PREFIX=$HOME/.local make -C kakoune/src install
 
 # kak-lsp
 curl -L https://github.com/ul/kak-lsp/releases/download/v7.0.0/kak-lsp-v7.0.0-x86_64-unknown-linux-musl.tar.gz | tar -xz
