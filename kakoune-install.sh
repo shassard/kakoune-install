@@ -24,7 +24,7 @@ rustup component add clippy
 git clone https://github.com/rust-analyzer/rust-analyzer
 pushd .
 cd rust-analyzer
-cargo xtask install --server
+nice cargo xtask install --server
 popd
 
 # kakrc
