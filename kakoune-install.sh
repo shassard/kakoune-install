@@ -15,6 +15,9 @@ mkdir -p "$HOME"/.config/kak-lsp
 #sed "s/rls/ra_lsp_server/g" kak-lsp.toml > kak-lsp-new.toml
 mv kak-lsp.toml "$HOME"/.config/kak-lsp/
 
+# clippy
+rustup component add clippy
+
 # rls
 rustup component add rls rust-analysis rust-src
 
