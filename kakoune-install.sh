@@ -18,7 +18,7 @@ sed "s/rls/ra_lsp_server/g" kak-lsp.toml > "$HOME"/.config/kak-lsp/kak-lsp.toml
 rustup component add clippy
 
 # rls
-#rustup component add rls rust-analysis rust-src
+rustup component add rls rust-analysis rust-src
 
 # rust-analyzer
 git clone https://github.com/rust-analyzer/rust-analyzer
