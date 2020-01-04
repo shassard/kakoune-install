@@ -40,8 +40,8 @@ EOF
 
 # autoloads
 mkdir -p "$HOME"/.config/kak/autoload
-if [ ! -L "$HOME"/.config/kak/autoload/kak ]; then
+if [ ! -L "$HOME"/.config/kak/autoload/default ]; then
  echo creating autoload symlink
- ln -s "$HOME"/.local/share/kak "$HOME"/.config/kak/autoload/kak
+ ln -s "$HOME"/.local/share/kak/autoload "$HOME"/.config/kak/autoload/default
 fi
-curl -o "$HOME"/.config/kak/autoload/cargo.kak https://gitlab.com/Screwtapello/kakoune-cargo/raw/master/cargo.kak 
+curl -o "$HOME"/.config/kak/autoload/cargo.kak https://gitlab.com/Screwtapello/kakoune-cargo/raw/master/cargo.kak
