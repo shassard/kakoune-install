@@ -15,11 +15,19 @@ curl -L https://raw.githubusercontent.com/ul/kak-lsp/master/kak-lsp.toml | sed "
 # clippy
 rustup component add clippy
 
-# rls
-rustup component add rls rust-analysis rust-src
+# rust-src
+rustup component add rust-src
 
 # rust-analyzer
-cargo install --git https://github.com/rust-analyzer/rust-analyzer ra_lsp_server
+cargo install --git https://github.com/rust-analyzer/rust-analyzer ra_lsp_server # this should work, but seems to be bad
+#git clone git@github.com:rust-analyzer/rust-analyzer
+#pushd .
+#cd rust-analyzer
+#cargo xtask install --server
+#popd
+
+# rls
+#rustup component add rls rust-analysis
 
 # kakrc
 mkdir -p "$HOME"/.config/kak
