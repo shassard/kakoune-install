@@ -8,7 +8,7 @@ git clone https://github.com/mawww/kakoune.git
 PREFIX="$HOME"/.local make -j12 -C kakoune/src install
 
 # kak-lsp
-cargo install --git https://github.com/ul/kak-lsp
+cargo install -f --git https://github.com/ul/kak-lsp
 mkdir -p "$HOME"/.config/kak-lsp
 curl -L https://raw.githubusercontent.com/ul/kak-lsp/master/kak-lsp.toml | sed "s/\"rls\"/\"ra_lsp_server\"/g" > "$HOME"/.config/kak-lsp/kak-lsp.toml
 
@@ -19,7 +19,7 @@ rustup component add clippy
 rustup component add rust-src
 
 # rust-analyzer
-cargo install --git https://github.com/rust-analyzer/rust-analyzer ra_lsp_server # this should work, but seems to be bad
+cargo install -f --git https://github.com/rust-analyzer/rust-analyzer ra_lsp_server # this should work, but seems to be bad
 #git clone git@github.com:rust-analyzer/rust-analyzer
 #pushd .
 #cd rust-analyzer
