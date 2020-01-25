@@ -50,9 +50,9 @@ eval %sh{kak-lsp --kakoune -s \$kak_session}
 lsp-enable
 lsp-auto-hover-enable
 lsp-auto-hover-insert-mode-disable
-set-option window lsp_hover_anchor true
-set-face window DiagnosticError default+u
-set-face window DiagnosticWarning default+u
+set-option global lsp_hover_anchor true
+set-face global DiagnosticError default+u
+set-face global DiagnosticWarning default+u
 set-option global lsp_server_configuration rust.clippy_preference="on"
 EOF
 
