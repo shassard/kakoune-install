@@ -3,8 +3,13 @@
 set -ex
 
 # kakoune
-sudo apt install libncursesw5-dev pkg-config
-git clone https://github.com/mawww/kakoune.git
+BUILDPKGS="libncursesw5 pkg-config"
+for PKG in $BUILDPKGS; do
+    if $(dpkg -l "$PKG") -ne 0; then
+        sudo apt install "$PKG"
+	fi
+done
+git clone --depth=1 https://github.com/mawww/kakoune.git
 PREFIX="$HOME"/.local make -j12 -C kakoune/src install
 
 # kak-lsp
@@ -33,7 +38,7 @@ cargo install -f --git https://github.com/rust-analyzer/rust-analyzer ra_lsp_ser
 mkdir -p "$HOME"/.config/kak
 cat > "$HOME"/.config/kak/kakrc << EOF
 set-option global ui_options ncurses_assistant=off
-set-option global tabstop     4
+set-option global tabstop 4
 set-option global indentwidth 4
 add-highlighter global/ number-lines -relative -hlcursor
 add-highlighter global/ show-matching
@@ -43,6 +48,11 @@ colorscheme gruvbox
 
 eval %sh{kak-lsp --kakoune -s \$kak_session}
 lsp-enable
+lsp-auto-hover-enable
+lsp-auto-hover-insert-mode-disable
+set-option window lsp_hover_anchor true
+set-face window DiagnosticError default+u
+set-face window DiagnosticWarning default+u
 set-option global lsp_server_configuration rust.clippy_preference="on"
 EOF
 
