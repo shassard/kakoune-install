@@ -43,17 +43,13 @@ set-option global indentwidth 4
 add-highlighter global/ number-lines -relative -hlcursor
 add-highlighter global/ show-matching
 add-highlighter global/ regex '\h+$' 0:Error
-
 colorscheme gruvbox
-
 eval %sh{kak-lsp --kakoune -s \$kak_session}
 lsp-enable
-lsp-auto-hover-enable
-lsp-auto-hover-insert-mode-disable
-set-option global lsp_hover_anchor true
 set-face global DiagnosticError default+u
 set-face global DiagnosticWarning default+u
 set-option global lsp_server_configuration rust.clippy_preference="on"
+map global user l ':enter-user-mode lsp<ret>' -docstring 'enter lsp user mode'
 EOF
 
 # autoloads
