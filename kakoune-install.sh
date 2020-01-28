@@ -3,9 +3,11 @@
 set -ex
 
 # kakoune
-BUILDPKGS="libncursesw5 pkg-config"
+BUILDPKGS="libncurses-dev pkg-config"
 for PKG in $BUILDPKGS; do
-    if $(dpkg -l "$PKG") -ne 0; then
+    dpkg -l "$PKG"
+    RETVAL=$?
+    if [ "$RETVAL" -ne 0 ]; then
         sudo apt install "$PKG"
 	fi
 done
