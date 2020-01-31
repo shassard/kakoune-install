@@ -4,14 +4,21 @@ set -ex
 
 # kakoune
 if [ "$(uname)" == "Linux" ]; then
-  BUILDPKGS="libncurses-dev pkg-config"
-  for PKG in $BUILDPKGS; do
-    dpkg -l "$PKG"
-    RETVAL=$?
-    if [ "$RETVAL" -ne 0 ]; then
-        sudo apt install "$PKG"
+    if [ -f /usr/bin/dpkg ]; then
+        BUILDPKGS="libncurses-dev pkg-config"
+        for PKG in $BUILDPKGS; do
+            if ! dpkg -l "$PKG"; then
+                sudo apt -y install "$PKG"
+            fi
+        done
+    elif [ -f /usr/bin/rpm ]; then
+        BUILDPKGS="ncurses-devel pkgconf-pkg-config"
+        for PKG in $BUILDPKGS; do
+            if ! rpm -qi "$PKG"; then
+                sudo dnf -y install "$PKG"
+            fi
+        done
     fi
-  done
 fi
 git clone --depth=1 https://github.com/mawww/kakoune.git || true
 PREFIX="$HOME"/.local make -j12 -C kakoune/src install
