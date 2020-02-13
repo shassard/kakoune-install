@@ -7,14 +7,14 @@ if [ "$(uname)" == "Linux" ]; then
     if [ -f /usr/bin/dpkg ]; then
         BUILDPKGS="libncurses-dev pkg-config"
         for PKG in $BUILDPKGS; do
-            if ! dpkg -l "$PKG"; then
+            if ! dpkg -s "$PKG" > /dev/null ; then
                 sudo apt -y install "$PKG"
             fi
         done
     elif [ -f /usr/bin/rpm ]; then
         BUILDPKGS="ncurses-devel pkgconf-pkg-config"
         for PKG in $BUILDPKGS; do
-            if ! rpm -qi "$PKG"; then
+            if ! rpm -qi "$PKG" > /dev/null ; then
                 sudo dnf -y install "$PKG"
             fi
         done
@@ -73,9 +73,12 @@ EOF
 
 # autoloads
 mkdir -p "$HOME"/.config/kak/autoload
+
 if [ ! -L "$HOME"/.config/kak/autoload/default ]; then
  echo creating autoload symlink
- if [ -L /usr/local/share/kak/autoload ]; then
+ if [ -L /usr/share/kak/autoload ]; then
+      ln -s /usr/share/kak/autoload "$HOME"/.config/kak/autoload/default
+ elif [ -L /usr/local/share/kak/autoload ]; then
    ln -s /usr/local/share/kak/autoload "$HOME"/.config/kak/autoload/default
  elif [ -L "$HOME"/.local/share/kak/autoload ]; then
    ln -s "$HOME"/.local/share/kak/autoload "$HOME"/.config/kak/autoload/default
