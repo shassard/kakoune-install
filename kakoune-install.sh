@@ -34,7 +34,7 @@ git -C "$PLUGPATH" checkout dev
 # kak-lsp
 cargo install --git https://github.com/ul/kak-lsp
 mkdir -p "$HOME"/.config/kak-lsp
-curl -L https://raw.githubusercontent.com/ul/kak-lsp/master/kak-lsp.toml | sed "s/\"rls\"/\"ra_lsp_server\"/g" > "$HOME"/.config/kak-lsp/kak-lsp.toml
+curl -L https://raw.githubusercontent.com/ul/kak-lsp/master/kak-lsp.toml | sed "s/\"rls\"/\"rust-analyzer\"/g" > "$HOME"/.config/kak-lsp/kak-lsp.toml
 
 # clippy
 rustup component add clippy
@@ -43,7 +43,7 @@ rustup component add clippy
 rustup component add rust-src
 
 # rust-analyzer
-cargo install --git https://github.com/rust-analyzer/rust-analyzer ra_lsp_server
+cargo install --git https://github.com/rust-analyzer/rust-analyzer rust-analyzer
 
 # kakrc
 mkdir -p "$HOME"/.config/kak
