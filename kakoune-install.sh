@@ -5,7 +5,7 @@ set -ex
 # kakoune
 if [ "$(uname)" == "Linux" ]; then
     if [ -f /usr/bin/dpkg ]; then
-        BUILDPKGS="libncurses-dev pkg-config"
+        BUILDPKGS="libncursesw5-dev pkg-config"
         for PKG in $BUILDPKGS; do
             if ! dpkg -s "$PKG" > /dev/null ; then
                 sudo apt -y install "$PKG"
