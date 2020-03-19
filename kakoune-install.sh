@@ -58,7 +58,7 @@ add-highlighter global/ regex '\h+$' 0:Error # show trailing whitespace as an er
 
 colorscheme gruvbox
 
-eval %sh{kak-lsp --kakoune -s $kak_session}
+eval %sh{kak-lsp --kakoune -s \$kak_session}
 set-option global lsp_server_configuration rust.clippy_preference=on
 map global user l ':enter-user-mode lsp<ret>' -docstring 'enter lsp user mode'
 hook global WinSetOption filetype=(rust|python|go) %{lsp-enable-window}
