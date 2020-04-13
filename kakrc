@@ -6,9 +6,9 @@ add-highlighter global/ number-lines #-hlcursor
 add-highlighter global/ show-matching
 add-highlighter global/ regex '\h+$' 0:Error # show trailing whitespace as an error
 
-colorscheme gruvbox
+colorscheme solarized-light
 
-eval %sh{kak-lsp --kakoune -s \$kak_session}
+eval %sh{kak-lsp --kakoune -s $kak_session}
 set-option global lsp_server_configuration rust.clippy_preference=on
 map global user l ':enter-user-mode lsp<ret>' -docstring 'enter lsp user mode'
 hook global WinSetOption filetype=(rust|python|go) %{lsp-enable-window}
@@ -16,7 +16,14 @@ hook global WinSetOption filetype=(rust|python|go) %{lsp-enable-window}
 set-face global DiagnosticError default+u
 set-face global DiagnosticWarning default+u
 
-plug "lePerdu/kakboard" config %{hook global WinCreate .* %{kakboard-enable}}
+plug "andreyorst/powerline.kak" defer powerline %{
+    powerline-theme solarized-light
+} config %{
+    powerline-start
+}
+plug "lePerdu/kakboard" config %{
+    hook global WinCreate .* %{kakboard-enable}
+}
 
 hook global WinCreate ^[^*]+$ %{git show-diff}
 hook global BufWritePost ^[^*]+$ %{git show-diff}
