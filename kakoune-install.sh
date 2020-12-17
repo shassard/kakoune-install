@@ -3,33 +3,33 @@
 set -ex
 
 # kakoune
-if [ "$(uname)" == "Linux" ]; then
-    if [ -f /usr/bin/dpkg ]; then
-        BUILDPKGS="libncursesw5-dev pkg-config"
-        for PKG in $BUILDPKGS; do
-            if ! dpkg -s "$PKG" > /dev/null ; then
-                sudo apt -y install "$PKG"
-            fi
-        done
-    elif [ -f /usr/bin/rpm ]; then
-        BUILDPKGS="ncurses-devel pkgconf-pkg-config"
-        for PKG in $BUILDPKGS; do
-            if ! rpm -qi "$PKG" > /dev/null ; then
-                sudo dnf -y install "$PKG"
-            fi
-        done
-    fi
-fi
-git clone --depth=1 https://github.com/mawww/kakoune.git || true
-PREFIX="$HOME"/.local make -j12 -C kakoune/src install
+#if [ "$(uname)" == "Linux" ]; then
+#    if [ -f /usr/bin/dpkg ]; then
+#        BUILDPKGS="libncursesw5-dev pkg-config"
+#        for PKG in $BUILDPKGS; do
+#            if ! dpkg -s "$PKG" > /dev/null ; then
+#                sudo apt -y install "$PKG"
+#            fi
+#        done
+#    elif [ -f /usr/bin/rpm ]; then
+#        BUILDPKGS="ncurses-devel pkgconf-pkg-config"
+#        for PKG in $BUILDPKGS; do
+#            if ! rpm -qi "$PKG" > /dev/null ; then
+#                sudo dnf -y install "$PKG"
+#            fi
+#        done
+#    fi
+#fi
+#git clone --depth=1 https://github.com/mawww/kakoune.git || true
+#PREFIX="$HOME"/.local make -j12 -C kakoune/src install
 
 # plug.kak
 mkdir -p "$HOME"/.config/kak/plugins
 PLUGPATH="$HOME"/.config/kak/plugins/plug.kak
 if [ ! -f "$PLUGPATH" ]; then
- git clone https://github.com/andreyorst/plug.kak.git "$PLUGPATH" || true
+ git clone https://github.com/robertmeta/plug.kak.git "$PLUGPATH" || true
 fi
-git -C "$PLUGPATH" checkout dev
+#git -C "$PLUGPATH" checkout dev
 
 # kak-lsp
 cargo install --git https://github.com/ul/kak-lsp
