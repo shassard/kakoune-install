@@ -16,6 +16,11 @@ hook global WinSetOption filetype=(rust|python|go) %{lsp-enable-window}
 set-face global DiagnosticError default+u
 set-face global DiagnosticWarning default+u
 
+plug "alexherbo2/prelude.kak" config %{require-module prelude}
+plug "alexherbo2/auto-pairs.kak" config %{
+    require-module auto-pairs
+    auto-pairs-enable
+}
 plug "jdugan6240/powerline.kak" defer powerline %{
     powerline-theme base16
 } config %{
